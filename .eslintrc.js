@@ -32,6 +32,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
+    'import/no-named-as-default': 0,
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
   },
