@@ -1,0 +1,55 @@
+@import '../../scss/variables';
+
+.button {
+  display: inline-block;
+  background-color: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  min-width: 100px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color $duration ease-in-out,
+    border-color $duration ease-in-out;
+  border: 1px solid transparent;
+
+  &,
+  span {
+    color: #fff;
+  }
+
+  & i,
+  & span,
+  & path,
+  & svg {
+    transition: all $duration ease-in-out;
+  }
+
+  &.transparent {
+    background-color: #fff;
+    border: 1px solid $orange;
+
+    & span {
+      color: $orange;
+    }
+
+    & svg {
+      transition: all $duration ease-in-out;
+      fill: $orange;
+    }
+
+    &:hover {
+      background-color: $orange;
+      & span {
+        color: #fff;
+      }
+
+      & svg path {
+        fill: #fff;
+      }
+    }
+  }
+}
+
+.icon {
+  margin-right: 5px;
+}
