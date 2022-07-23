@@ -23,7 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
     >
       <span className={styles.icon}>{varIcon === 'plus' && <Plus />}</span>
       {children}
-      {counter && (
+      {(counter || counter === 0) && (
         <span className={styles.counter}>
           <i className={styles.number}>{counter}</i>
         </span>

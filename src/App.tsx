@@ -1,13 +1,16 @@
 import React from 'react'
-
+import './styles.scss'
 import './scss/app.scss'
 
 import { Header, Menu, Pizza, Sort } from './components'
+
+import pizzas from './assets/pazzas.json'
+import { IPizzaProps } from './components/Pizza/Pizza.props'
+console.log(typeof pizzas)
+
 // import type { RootState } from './redux/store'
 // import { useSelector, useDispatch } from 'react-redux'
 // import { decrement, increment, incrementByAmount } from './redux/testSlice'
-
-import './styles.scss'
 
 export const App = () => {
   // const { value, name } = useSelector((state: RootState) => state.testSlice)
@@ -36,17 +39,9 @@ export const App = () => {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-              <Pizza
-                id="1"
-                title="маргарита"
-                price={350}
-                imageUrl={
-                  'https://staticy.dominospizza.ru/api/medium/ProductOsg/Web/МАРГ/NULL/NULL/RU'
-                }
-                sizes={[24, 32, 40]}
-                types={[0, 1]}
-                rating={2}
-              />
+              {pizzas.map((pizza: IPizzaProps) => (
+                <Pizza key={pizza.id} {...pizza} />
+              ))}
             </div>
             <ul className="Pagination_root__uwB0O">
               {/* <li className="previous disabled">
