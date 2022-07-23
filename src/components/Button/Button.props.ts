@@ -7,6 +7,6 @@ export interface ButtonProps
   > {
   children: ReactNode
   appearance: 'primary' | 'transparent'
-  // arrow?: 'right' | 'down' | 'none'
   varIcon?: 'plus'
+  counter?: number
 }

@@ -28,13 +28,23 @@
 }
 
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
 }
 
-@media screen and (min-width: 645px) {
+.cart {
+  justify-self: center;
+}
+
+@media screen and (min-width: 992px) {
   .container {
     flex-direction: flex-start;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+  }
+
+  .cart {
+    justify-self: right;
   }
 }

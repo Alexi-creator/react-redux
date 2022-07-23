@@ -16,6 +16,11 @@ export const Pizza: React.FC<IPizzaProps> = ({
 }) => {
   const [activeSize, setActiveSize] = React.useState(0)
   const [activeType, setActiveType] = React.useState(0)
+  const [pizzaCount, setPizzaCount] = React.useState(0)
+
+  const addCountPizza = () => {
+    setPizzaCount((prev) => prev + 1)
+  }
 
   return (
     <div className={styles.root}>
@@ -55,8 +60,14 @@ export const Pizza: React.FC<IPizzaProps> = ({
       </div>
       <div className={styles.bottom}>
         <div className={styles.price}>{price}</div>
-        <Button appearance="transparent" varIcon="plus">
-          <span>Добавить</span>
+        <Button
+          className={styles.button}
+          appearance="transparent"
+          varIcon="plus"
+          counter={pizzaCount}
+          onClick={addCountPizza}
+        >
+          Добавить
         </Button>
       </div>
     </div>

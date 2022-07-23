@@ -1,0 +1,31 @@
+@import '../../scss/variables';
+
+.cart {
+  display: inline-flex;
+  align-items: center;
+  background-color: $orange;
+  border-radius: 30px;
+  line-height: 23px;
+  padding: 12px 25px;
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: $orangeHover;
+  }
+
+  span {
+    color: #fff;
+    font-weight: 600;
+    line-height: 20px;
+  }
+}
+
+.price {
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 1px solid hsla(0, 0%, 100%, 0.25);
+}
+
+.amount {
+  margin-left: 10px;
+}

@@ -13,7 +13,7 @@ const categories: string[] = [
 ]
 
 export const Menu: React.FC = () => {
-  const [activeMenu, setActiveMenu] = React.useState(0)
+  const [activeMenu, setActiveMenu] = React.useState<number>(0)
 
   return (
     <>

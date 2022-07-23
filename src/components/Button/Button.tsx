@@ -7,10 +7,10 @@ import Plus from '../../assets/images/Plus'
 
 export const Button: React.FC<ButtonProps> = ({
   appearance,
-  //   arrow = 'none',
   varIcon = 'plus',
   children,
   className,
+  counter,
   ...props
 }: ButtonProps) => {
   return (
@@ -23,6 +23,11 @@ export const Button: React.FC<ButtonProps> = ({
     >
       <span className={styles.icon}>{varIcon === 'plus' && <Plus />}</span>
       {children}
+      {counter && (
+        <span className={styles.counter}>
+          <i className={styles.number}>{counter}</i>
+        </span>
+      )}
     </button>
   )
 }

@@ -12,11 +12,6 @@
     border-color $duration ease-in-out;
   border: 1px solid transparent;
 
-  &,
-  span {
-    color: #fff;
-  }
-
   & i,
   & span,
   & path,
@@ -24,9 +19,30 @@
     transition: all $duration ease-in-out;
   }
 
+  .icon {
+    margin-right: 5px;
+  }
+
+  & .number {
+    height: 28px;
+    font-weight: 600;
+    font-style: normal;
+    color: #fff;
+    padding: 0 10px;
+    margin-left: 5px;
+    background-color: $orange;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease-in-out;
+  }
+
   &.transparent {
     background-color: #fff;
     border: 1px solid $orange;
+    color: $orange;
 
     & span {
       color: $orange;
@@ -39,6 +55,7 @@
 
     &:hover {
       background-color: $orange;
+      color: #fff;
       & span {
         color: #fff;
       }
@@ -46,10 +63,11 @@
       & svg path {
         fill: #fff;
       }
+
+      & .number {
+        background-color: #fff;
+        color: $orange;
+      }
     }
   }
-}
-
-.icon {
-  margin-right: 5px;
 }
