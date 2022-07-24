@@ -4,6 +4,8 @@ import styles from './Pizza.module.scss'
 import { IPizzaProps } from './Pizza.props'
 import cn from 'classnames'
 
+const typeNames = ['тонкое', 'традиционное']
+
 export const Pizza: React.FC<IPizzaProps> = ({
   id,
   title,
@@ -12,10 +14,8 @@ export const Pizza: React.FC<IPizzaProps> = ({
   sizes,
   types,
 }) => {
-  const typeNames = ['тонкое', 'традиционное']
-
   const [activeSize, setActiveSize] = React.useState<number>(0)
-  const [activeType, setActiveType] = React.useState<number>(0)
+  const [activeType, setActiveType] = React.useState<number>(types[0])
   const [pizzaCount, setPizzaCount] = React.useState<number>(0)
 
   const addCountPizza = () => {
@@ -37,7 +37,7 @@ export const Pizza: React.FC<IPizzaProps> = ({
                 onClick={() => setActiveType(typeId)}
                 role="presentation"
                 className={cn(styles.type, {
-                  [styles.active]: activeType === typeId || types.length === 1,
+                  [styles.active]: activeType === typeId,
                 })}
               >
                 {typeNames[typeId]}

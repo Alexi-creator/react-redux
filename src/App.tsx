@@ -1,12 +1,12 @@
 import React from 'react'
+import { Route, Routes } from 'react-router-dom'
 import './styles.scss'
 import './scss/app.scss'
 
-import { Header, Menu, Pizza, Sort } from './components'
-
-import pizzas from './assets/pazzas.json'
-import { IPizzaProps } from './components/Pizza/Pizza.props'
-console.log(typeof pizzas)
+import { Header } from './components'
+import { Home } from './pages/Home'
+import { Page404 } from './pages/Page404'
+import { Cart } from './pages/Cart'
 
 // import type { RootState } from './redux/store'
 // import { useSelector, useDispatch } from 'react-redux'
@@ -33,33 +33,11 @@ export const App = () => {
         <Header />
         <div className="content">
           <div className="container">
-            <div className="content__top">
-              <Menu />
-              <Sort />
-            </div>
-            <h2 className="content__title">Все пиццы</h2>
-            <div className="content__items">
-              {pizzas.map((pizza: IPizzaProps) => (
-                <Pizza key={pizza.id} {...pizza} />
-              ))}
-            </div>
-            <ul className="Pagination_root__uwB0O">
-              {/* <li className="previous disabled">
-                <a href="/">&lt;</a>
-              </li>
-              <li className="selected">
-                <a href="/">1</a>
-              </li>
-              <li>
-                <a href="/">2</a>
-              </li>
-              <li>
-                <a href="/">3</a>
-              </li>
-              <li className="next">
-                <a href="/">&gt;</a>
-              </li> */}
-            </ul>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="cart" element={<Cart />} />
+              <Route path="*" element={<Page404 />} />
+            </Routes>
           </div>
         </div>
       </div>
