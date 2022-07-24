@@ -67,6 +67,7 @@ export const Pizza: React.FC<IPizzaProps> = ({
             varIcon="plus"
             counter={pizzaCount}
             onClick={addCountPizza}
+            colorIcon="#fe5f1e"
           >
             Добавить
           </Button>

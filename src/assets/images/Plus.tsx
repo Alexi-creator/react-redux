@@ -5,7 +5,7 @@ const Plus: React.FC<SVGAttributes<SVGSVGElement>> = (props) => (
     width="12"
     height="12"
     viewBox="0 0 12 12"
-    fill="none"
+    fill="#EB5A1E"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >

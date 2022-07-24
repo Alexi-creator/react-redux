@@ -5,8 +5,9 @@ export interface ButtonProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  children: ReactNode
-  appearance: 'primary' | 'transparent'
-  varIcon?: 'plus'
+  children?: ReactNode
+  appearance: 'primary' | 'transparent' | 'circul'
+  varIcon?: 'plus' | 'minus' | 'close'
   counter?: number
+  colorIcon?: string
 }

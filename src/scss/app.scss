@@ -151,7 +151,6 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
-    @include noselect();
 
     span {
       display: inline-block;
@@ -169,7 +168,7 @@ body {
     &:hover {
       svg {
         path {
-          stroke: darken($color: #b6b6b6, $amount: 50);
+          fill: darken($color: #b6b6b6, $amount: 50);
         }
       }
       span {
@@ -270,38 +269,6 @@ body {
         font-weight: bold;
         font-size: 22px;
         letter-spacing: 0.01em;
-      }
-    }
-
-    &-remove {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      width: 4%;
-
-      .button {
-        border-color: darken($color: $gray-line, $amount: 10);
-      }
-
-      svg {
-        transform: rotate(45deg);
-
-        path {
-          fill: darken($color: $gray-line, $amount: 15);
-        }
-      }
-
-      .button {
-        svg {
-          width: 11.5px;
-          height: 11.5px;
-          position: relative;
-        }
-        &:hover,
-        &:active {
-          border-color: darken($color: $gray-line, $amount: 80);
-          background-color: darken($color: $gray-line, $amount: 80);
-        }
       }
     }
   }

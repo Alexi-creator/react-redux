@@ -49,7 +49,6 @@
 
     & svg {
       transition: all $duration ease-in-out;
-      fill: $orange;
     }
 
     &:hover {
@@ -66,6 +65,48 @@
       & .number {
         background-color: #fff;
         color: $orange;
+      }
+    }
+  }
+
+  &.circul {
+    min-width: auto;
+    border: 2px solid #c6c4c4;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+
+    & .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    &.active {
+      border-color: #fe5f1e;
+
+      & svg {
+        transition: all 0.05s ease-in-out;
+      }
+
+      &:hover {
+        background-color: #fe5f1e;
+
+        & svg {
+          fill: #fff;
+        }
+      }
+    }
+
+    &.close {
+      &:hover {
+        background-color: #000;
+        border: 2px solid #000;
+
+        & svg {
+          fill: #fff;
+        }
       }
     }
   }

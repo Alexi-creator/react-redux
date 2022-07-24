@@ -4,13 +4,16 @@ import styles from './Button.module.scss'
 import cn from 'classnames'
 
 import Plus from '../../assets/images/Plus'
+import Minus from '../../assets/images/Minus'
+import Close from '../../assets/images/Close'
 
 export const Button: React.FC<ButtonProps> = ({
   appearance,
-  varIcon = 'plus',
+  varIcon,
   children,
   className,
   counter,
+  colorIcon = '#c6c4c4',
   ...props
 }: ButtonProps) => {
   return (
@@ -18,10 +21,19 @@ export const Button: React.FC<ButtonProps> = ({
       className={cn(styles.button, className, {
         [styles.primary]: appearance === 'primary',
         [styles.transparent]: appearance === 'transparent',
+        [styles.circul]: appearance === 'circul',
+        [styles.active]: varIcon === 'plus',
+        [styles.close]: varIcon === 'close',
       })}
       {...props}
     >
-      <span className={styles.icon}>{varIcon === 'plus' && <Plus />}</span>
+      {varIcon && (
+        <span className={styles.icon}>
+          {varIcon === 'plus' && <Plus fill={colorIcon} />}
+          {varIcon === 'minus' && <Minus fill={colorIcon} />}
+          {varIcon === 'close' && <Close fill={colorIcon} />}
+        </span>
+      )}
       {children}
       {(counter || counter === 0) && (
         <span className={styles.counter}>
