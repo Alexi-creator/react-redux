@@ -6,7 +6,7 @@ export interface ButtonProps
     HTMLButtonElement
   > {
   children?: ReactNode
-  appearance: 'primary' | 'transparent' | 'circul'
+  appearance: 'primary' | 'transparent' | 'circul' | 'fill'
   varIcon?: 'plus' | 'minus' | 'close'
   counter?: number
   colorIcon?: string

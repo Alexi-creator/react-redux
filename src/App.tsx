@@ -7,7 +7,7 @@ import './scss/app.scss'
 import { Header } from './components'
 import { Home } from './pages/Home'
 import { Page404 } from './pages/Page404'
-import { Cart } from './pages/Cart'
+import { Cart } from './pages/Cart/Cart'
 
 // import type { RootState } from './redux/store'
 // import { useSelector, useDispatch } from 'react-redux'

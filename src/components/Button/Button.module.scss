@@ -84,14 +84,14 @@
     }
 
     &.active {
-      border-color: #fe5f1e;
+      border-color: $orange;
 
       & svg {
         transition: all 0.05s ease-in-out;
       }
 
       &:hover {
-        background-color: #fe5f1e;
+        background-color: $orange;
 
         & svg {
           fill: #fff;
@@ -108,6 +108,15 @@
           fill: #fff;
         }
       }
+    }
+  }
+
+  &.fill {
+    background-color: $orange;
+    color: #fff;
+
+    &:hover {
+      background-color: $orangeHover;
     }
   }
 }

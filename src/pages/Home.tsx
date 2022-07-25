@@ -2,25 +2,46 @@ import React from 'react'
 import { Menu, Pizza, PizzaSkeleton, Sort } from '../components'
 import { IPizzaProps } from '../components/Pizza/Pizza.props'
 
+const categories: string[] = [
+  'Все',
+  'Мясные',
+  'Вегетарианские',
+  'Гриль',
+  'Острые',
+  'Закрытые',
+]
+
 export const Home = () => {
   const [pizzas, setPizzas] = React.useState<IPizzaProps[]>([])
   const [isLoading, setIsLoading] = React.useState<boolean>(true)
 
+  const [categoryId, setCategoryId] = React.useState<number>(0)
+  const [sortType, setSortType] = React.useState<number>(0)
+
   React.useEffect(() => {
-    fetch('https://62dd423d79b9f8c30aa554e1.mockapi.io/items').then((data) =>
+    setIsLoading(true)
+    fetch(
+      'https://62dd423d79b9f8c30aa554e1.mockapi.io/items' +
+        `?category=${categoryId}`
+    ).then((data) =>
       data.json().then((pizzas) => {
         setPizzas(pizzas)
         setIsLoading((prev) => !prev)
       })
     )
-  }, [])
+    window.scrollTo(0, 0)
+  }, [categoryId, sortType])
   return (
     <>
       <div className="content__top">
-        <Menu />
-        <Sort />
+        <Menu
+          value={categoryId}
+          changeCategory={(index) => setCategoryId(index)}
+          categories={categories}
+        />
+        <Sort value={sortType} changeSort={(index) => setSortType(index)} />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className="content__title">Пиццы:</h2>
       <div className="content__items">
         {isLoading
           ? [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />)

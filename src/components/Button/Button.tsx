@@ -21,6 +21,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={cn(styles.button, className, {
         [styles.primary]: appearance === 'primary',
         [styles.transparent]: appearance === 'transparent',
+        [styles.fill]: appearance === 'fill',
         [styles.circul]: appearance === 'circul',
         [styles.active]: varIcon === 'plus',
         [styles.close]: varIcon === 'close',

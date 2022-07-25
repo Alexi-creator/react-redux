@@ -1,9 +1,10 @@
 import React from 'react'
+import styles from './Cart.module.scss'
 import { Link } from 'react-router-dom'
-import ArrowLeft from '../assets/images/ArrowLeft'
-import IconCart from '../assets/images/IconCart'
-import IconTrash from '../assets/images/IconTrash'
-import { Button } from '../components'
+import ArrowLeft from '../../assets/images/ArrowLeft'
+import IconCart from '../../assets/images/IconCart'
+import IconTrash from '../../assets/images/IconTrash'
+import { Button } from '../../components'
 
 export const Cart = () => {
   return (
@@ -56,15 +57,12 @@ export const Cart = () => {
           </span>
         </div>
         <div className="cart__bottom-buttons">
-          <Link
-            to={'/'}
-            className="button button--outline button--add go-back-btn"
-          >
+          <Link to={'/'} className={styles.buttonBack}>
             <ArrowLeft />
-            <span>Вернуться назад</span>
+            Вернуться назад
           </Link>
-          <div className="button pay-btn">
-            <span>Оплатить сейчас</span>
+          <div className="">
+            <Button appearance="fill">Оплатить сейчас</Button>
           </div>
         </div>
       </div>

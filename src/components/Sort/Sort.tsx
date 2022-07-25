@@ -4,18 +4,7 @@ import styles from './Sort.module.scss'
 import ArrowUp from '../../assets/images/ArrowUp'
 import cn from 'classnames'
 
-export enum SortPropertyEnum {
-  RATING_DESC = 'rating',
-  RATING_ASC = '-rating',
-  TITLE_DESC = 'title',
-  TITLE_ASC = '-title',
-  PRICE_DESC = 'price',
-  PRICE_ASC = '-price',
-}
-interface ISortItem {
-  name: string
-  sortProperty: SortPropertyEnum
-}
+import { ISort, ISortItem, SortPropertyEnum } from './Sort.props'
 
 type PopupClick = MouseEvent & {
   path: Node[]
@@ -30,13 +19,12 @@ export const sortList: ISortItem[] = [
   { name: 'алфавиту (ASC)', sortProperty: SortPropertyEnum.TITLE_ASC },
 ]
 
-export const Sort: React.FC = () => {
+export const Sort: React.FC<ISort> = ({ value, changeSort }) => {
   const [open, setOpen] = React.useState(false)
-  const [selected, setSelected] = React.useState<number>(0)
   const sortRef = React.useRef<HTMLDivElement>(null)
 
   const onClickListItem = (index: number) => {
-    setSelected(index)
+    changeSort(index)
     setOpen((prev) => !prev)
   }
 
@@ -60,7 +48,7 @@ export const Sort: React.FC = () => {
         <ArrowUp />
         <b>Сортировка по:</b>
         <span onClick={() => setOpen((prev) => !prev)} role={'presentation'}>
-          {sortList[selected].name}
+          {sortList[value].name}
         </span>
       </div>
       {open && (
@@ -72,7 +60,7 @@ export const Sort: React.FC = () => {
                 onClick={() => onClickListItem(i)}
                 role={'presentation'}
                 className={cn(styles.select, {
-                  [styles.active]: selected === i,
+                  [styles.active]: value === i,
                 })}
               >
                 {obj.name}
