@@ -23,8 +23,8 @@ export const Sort: React.FC<ISort> = ({ value, changeSort }) => {
   const [open, setOpen] = React.useState(false)
   const sortRef = React.useRef<HTMLDivElement>(null)
 
-  const onClickListItem = (index: number) => {
-    changeSort(index)
+  const onClickListItem = (obj: ISortItem) => {
+    changeSort(obj)
     setOpen((prev) => !prev)
   }
 
@@ -48,7 +48,7 @@ export const Sort: React.FC<ISort> = ({ value, changeSort }) => {
         <ArrowUp />
         <b>Сортировка по:</b>
         <span onClick={() => setOpen((prev) => !prev)} role={'presentation'}>
-          {sortList[value].name}
+          {value.name}
         </span>
       </div>
       {open && (
@@ -57,10 +57,10 @@ export const Sort: React.FC<ISort> = ({ value, changeSort }) => {
             {sortList.map((obj, i) => (
               <li
                 key={i}
-                onClick={() => onClickListItem(i)}
+                onClick={() => onClickListItem(obj)}
                 role={'presentation'}
                 className={cn(styles.select, {
-                  [styles.active]: value === i,
+                  [styles.active]: value.sortProperty === obj.sortProperty,
                 })}
               >
                 {obj.name}

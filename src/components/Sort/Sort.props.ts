@@ -1,6 +1,11 @@
+export interface ISortItem {
+  name: string
+  sortProperty: SortPropertyEnum
+}
+
 export interface ISort {
-  value: number
-  changeSort: (index: number) => void
+  value: ISortItem
+  changeSort: (index: ISortItem) => void
 }
 
 export enum SortPropertyEnum {
@@ -10,9 +15,4 @@ export enum SortPropertyEnum {
   TITLE_ASC = '-title',
   PRICE_DESC = 'price',
   PRICE_ASC = '-price',
-}
-
-export interface ISortItem {
-  name: string
-  sortProperty: SortPropertyEnum
 }
