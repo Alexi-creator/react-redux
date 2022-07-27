@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu, Pizza, PizzaSkeleton, Sort } from '../components'
 import { IPizzaProps } from '../components/Pizza/Pizza.props'
 import { ISortItem, SortPropertyEnum } from '../components/Sort/Sort.props'
+import { SearchContext } from '../App'
 
 const categories: string[] = [
   'Все',
@@ -22,6 +23,8 @@ export const Home = () => {
     sortProperty: SortPropertyEnum.RATING_DESC,
   })
 
+  const { searchValue } = React.useContext(SearchContext)
+
   React.useEffect(() => {
     setIsLoading(true)
     fetch(
@@ -29,7 +32,8 @@ export const Home = () => {
         `${categoryId > 0 ? `category=${categoryId}` : ''}` +
         `&sortBy=${sortType.sortProperty.replace('-', '')}&order=${
           sortType.sortProperty[0] === '-' ? 'asc' : 'desc'
-        }`
+        }` +
+        `${searchValue ? `&search=${searchValue}` : ''}`
     ).then((data) =>
       data.json().then((pizzas) => {
         setPizzas(pizzas)
@@ -37,7 +41,7 @@ export const Home = () => {
       })
     )
     window.scrollTo(0, 0)
-  }, [categoryId, sortType])
+  }, [categoryId, sortType, searchValue])
   return (
     <>
       <div className="content__top">
