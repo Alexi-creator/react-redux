@@ -10,20 +10,23 @@ export const Search: React.FC<SearchInputProps> = ({
   setSearchValue,
   placeholder,
 }) => {
+  const searchRef = React.useRef<HTMLInputElement>(null)
+  const clearInput = () => {
+    setSearchValue('')
+    searchRef.current?.focus()
+  }
   return (
     <div className={styles.root}>
       <SearchImg width={20} className={styles.iconSearch} />
       <input
+        ref={searchRef}
         className={styles.input}
         placeholder={placeholder}
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
       />
       {searchValue && (
-        <Close
-          onClick={() => setSearchValue('')}
-          className={styles.closeIcon}
-        />
+        <Close onClick={clearInput} className={styles.closeIcon} />
       )}
     </div>
   )

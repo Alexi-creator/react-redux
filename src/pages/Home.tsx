@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { Menu, Pizza, PizzaSkeleton, Sort } from '../components'
 import { IPizzaProps } from '../components/Pizza/Pizza.props'
 import { SearchContext } from '../App'
@@ -29,19 +30,19 @@ export const Home = () => {
 
   React.useEffect(() => {
     setIsLoading(true)
-    fetch(
-      'https://62dd423d79b9f8c30aa554e1.mockapi.io/items?' +
-        `${categoryId > 0 ? `category=${categoryId}` : ''}` +
-        `&sortBy=${sortType.sortProperty.replace('-', '')}&order=${
-          sortType.sortProperty[0] === '-' ? 'asc' : 'desc'
-        }` +
-        `${searchValue ? `&search=${searchValue}` : ''}`
-    ).then((data) =>
-      data.json().then((pizzas) => {
-        setPizzas(pizzas)
+    axios
+      .get(
+        'https://62dd423d79b9f8c30aa554e1.mockapi.io/items?' +
+          `${categoryId > 0 ? `category=${categoryId}` : ''}` +
+          `&sortBy=${sortType.sortProperty.replace('-', '')}&order=${
+            sortType.sortProperty[0] === '-' ? 'asc' : 'desc'
+          }` +
+          `${searchValue ? `&search=${searchValue}` : ''}`
+      )
+      .then((res) => {
+        setPizzas(res.data)
         setIsLoading((prev) => !prev)
       })
-    )
     window.scrollTo(0, 0)
   }, [categoryId, sortType, searchValue])
   return (
