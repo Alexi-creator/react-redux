@@ -4,8 +4,10 @@ import styles from './Header.module.scss'
 import Logo from '../../assets/images/pizza-logo.svg'
 import { Search, Cart } from '../index'
 import { Link } from 'react-router-dom'
+import { SearchContext } from '../../App'
 
 export const Header = () => {
+  const { searchValue, setSearchValue } = React.useContext(SearchContext)
   return (
     <div className={styles.header}>
       <div className={styles.container}>
@@ -18,7 +20,11 @@ export const Header = () => {
             </div>
           </div>
         </Link>
-        <Search placeholder="Поиск пиццы..." />
+        <Search
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          placeholder="Поиск пиццы..."
+        />
         <Cart className={styles.cart} amount="2" price="850" />
       </div>
     </div>

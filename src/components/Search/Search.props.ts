@@ -6,4 +6,6 @@ export interface SearchInputProps
     HTMLInputElement
   > {
   placeholder: string
+  searchValue: string
+  setSearchValue: (e: string) => void
 }

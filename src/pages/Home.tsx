@@ -69,23 +69,6 @@ export const Home = () => {
               <Pizza key={pizza.id} {...pizza} />
             ))}
       </div>
-      <ul className="Pagination_root__uwB0O">
-        {/* <li className="previous disabled">
-        <a href="/">&lt;</a>
-      </li>
-      <li className="selected">
-        <a href="/">1</a>
-      </li>
-      <li>
-        <a href="/">2</a>
-      </li>
-      <li>
-        <a href="/">3</a>
-      </li>
-      <li className="next">
-        <a href="/">&gt;</a>
-      </li> */}
-      </ul>
     </>
   )
 }

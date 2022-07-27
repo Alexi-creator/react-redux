@@ -18,7 +18,7 @@
   border-radius: 5px;
   width: 100%;
   height: 100%;
-  padding: 5px 10px 5px 30px;
+  padding: 5px 30px 5px 30px;
   transition: all 0.2s ease;
 
   &::placeholder {
@@ -29,4 +29,11 @@
   &:focus {
     border: 1px solid rgb(193, 189, 189);
   }
+}
+
+.closeIcon {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  cursor: pointer;
 }
