@@ -1,8 +1,11 @@
 import React from 'react'
 import { Menu, Pizza, PizzaSkeleton, Sort } from '../components'
 import { IPizzaProps } from '../components/Pizza/Pizza.props'
-import { ISortItem, SortPropertyEnum } from '../components/Sort/Sort.props'
 import { SearchContext } from '../App'
+
+import type { RootState } from '../redux/store'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCategoryId, setSortType } from '../redux/slices/filterSlice'
 
 const categories: string[] = [
   'Все',
@@ -17,11 +20,10 @@ export const Home = () => {
   const [pizzas, setPizzas] = React.useState<IPizzaProps[]>([])
   const [isLoading, setIsLoading] = React.useState<boolean>(true)
 
-  const [categoryId, setCategoryId] = React.useState<number>(0)
-  const [sortType, setSortType] = React.useState<ISortItem>({
-    name: 'по популярности',
-    sortProperty: SortPropertyEnum.RATING_DESC,
-  })
+  const { categoryId, sort: sortType } = useSelector(
+    (state: RootState) => state.filterSlice
+  )
+  const dispatch = useDispatch()
 
   const { searchValue } = React.useContext(SearchContext)
 
@@ -47,17 +49,13 @@ export const Home = () => {
       <div className="content__top">
         <Menu
           value={categoryId}
-          changeCategory={(index) => setCategoryId(index)}
+          changeCategory={(index) => dispatch(setCategoryId(index))}
           categories={categories}
         />
         <Sort
           value={sortType}
           changeSort={(changeSort) => {
-            setSortType({
-              ...sortType,
-              sortProperty: changeSort.sortProperty,
-              name: changeSort.name,
-            })
+            dispatch(setSortType(changeSort))
           }}
         />
       </div>
