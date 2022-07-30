@@ -18,7 +18,7 @@ interface IFilterSlice {
 const initialState: IFilterSlice = {
   categoryId: 0,
   sort: {
-    name: 'по популярности',
+    name: 'по популярности (DESC)',
     sortProperty: SortPropertyEnum.RATING_DESC,
   },
 }
@@ -33,9 +33,13 @@ const filterSlice = createSlice({
     setSortType(state, action: PayloadAction<IFilterSort>) {
       state.sort = action.payload
     },
+    setFilters(state, action) {
+      state.categoryId = Number(action.payload.categoryId)
+      state.sort = action.payload.sort
+    },
   },
 })
 
-export const { setCategoryId, setSortType } = filterSlice.actions
+export const { setCategoryId, setSortType, setFilters } = filterSlice.actions
 
 export default filterSlice.reducer

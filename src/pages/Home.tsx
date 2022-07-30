@@ -1,12 +1,18 @@
 import React from 'react'
 import axios from 'axios'
-import { Menu, Pizza, PizzaSkeleton, Sort } from '../components'
+import qs from 'qs'
+import { useNavigate } from 'react-router-dom'
+import { Menu, Pizza, PizzaSkeleton, Sort, sortList } from '../components'
 import { IPizzaProps } from '../components/Pizza/Pizza.props'
 import { SearchContext } from '../App'
 
 import type { RootState } from '../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCategoryId, setSortType } from '../redux/slices/filterSlice'
+import {
+  setCategoryId,
+  setSortType,
+  setFilters,
+} from '../redux/slices/filterSlice'
 
 const categories: string[] = [
   'Все',
@@ -20,15 +26,19 @@ const categories: string[] = [
 export const Home = () => {
   const [pizzas, setPizzas] = React.useState<IPizzaProps[]>([])
   const [isLoading, setIsLoading] = React.useState<boolean>(true)
+  const isSearch = React.useRef(false)
+  const isMounted = React.useRef(false)
 
   const { categoryId, sort: sortType } = useSelector(
     (state: RootState) => state.filterSlice
   )
-  const dispatch = useDispatch()
 
   const { searchValue } = React.useContext(SearchContext)
 
-  React.useEffect(() => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const fetchPizzas = React.useCallback(() => {
     setIsLoading(true)
     axios
       .get(
@@ -44,7 +54,51 @@ export const Home = () => {
         setIsLoading((prev) => !prev)
       })
     window.scrollTo(0, 0)
-  }, [categoryId, sortType, searchValue])
+  }, [categoryId, searchValue, sortType.sortProperty])
+
+  // если первый рендер то параметры фильтром не вшиваем в строку, а если не первый(т.е. был клик по параметрам) то вшиваем
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sortType.sortProperty,
+        categoryId,
+      })
+
+      navigate(`?${queryString}`)
+    }
+
+    isMounted.current = true // после первого рендера меняем на тру и в следущий раз сработает условие выше if (isMounted.current)
+  }, [categoryId, navigate, sortType])
+
+  // при 1-м ренедере проверяем url параметры, если есть сохраняем их в redux
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1))
+
+      const sort = sortList.find(
+        (obj) => obj.sortProperty === params.sortProperty
+      )
+
+      dispatch(
+        setFilters({
+          categoryId: params.categoryId,
+          sort,
+        })
+      )
+
+      isSearch.current = true // после первого рендера оставляем тру чтобы не делать запрос за данными, но после изменения redux будет перерисовка
+    }
+  }, [dispatch])
+
+  // на 2-ой и последующий рендер
+  React.useEffect(() => {
+    if (!isSearch.current) {
+      fetchPizzas()
+    }
+
+    isSearch.current = false // на 2-ой рендер выше условие уже выполниться if (!isSearch.current)
+  }, [categoryId, sortType, fetchPizzas, searchValue])
+
   return (
     <>
       <div className="content__top">
