@@ -15,7 +15,7 @@ export const Header = () => {
           <div className={styles.logo}>
             <img width="38" src={Logo} alt="Pizza logo" />
             <div>
-              <h1>React Pizza V2</h1>
+              <h1>React Pizza</h1>
               <p>самая вкусная пицца во вселенной</p>
             </div>
           </div>
