@@ -23,7 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
         [styles.transparent]: appearance === 'transparent',
         [styles.fill]: appearance === 'fill',
         [styles.circul]: appearance === 'circul',
-        [styles.active]: varIcon === 'plus',
+        [styles.plus]: varIcon === 'plus',
         [styles.close]: varIcon === 'close',
       })}
       {...props}
@@ -36,7 +36,7 @@ export const Button: React.FC<ButtonProps> = ({
         </span>
       )}
       {children}
-      {(counter || counter === 0) && (
+      {counter && counter > 0 && (
         <span className={styles.counter}>
           <i className={styles.number}>{counter}</i>
         </span>

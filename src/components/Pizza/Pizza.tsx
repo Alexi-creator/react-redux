@@ -1,8 +1,14 @@
 import React from 'react'
+
+import type { RootState } from '../../redux/store'
+import { useSelector, useDispatch } from 'react-redux'
+
 import { Button } from '../index'
 import styles from './Pizza.module.scss'
 import { IPizzaProps } from './Pizza.props'
 import cn from 'classnames'
+
+import { addItem } from '../../redux/slices/cartSlice'
 
 const typeNames = ['тонкое', 'традиционное']
 
@@ -16,11 +22,23 @@ export const Pizza: React.FC<IPizzaProps> = ({
 }) => {
   const [activeSize, setActiveSize] = React.useState<number>(0)
   const [activeType, setActiveType] = React.useState<number>(types[0])
-  const [pizzaCount, setPizzaCount] = React.useState<number>(0)
+  const dispatch = useDispatch()
 
-  const addCountPizza = () => {
-    setPizzaCount((prev) => prev + 1)
+  const addPizzaCart = () => {
+    dispatch(
+      addItem({
+        id,
+        title,
+        price,
+        imageUrl,
+        sizes: activeSize,
+        types: typeNames[activeType],
+        ammount: 1,
+      })
+    )
   }
+
+  const { items } = useSelector((state: RootState) => state.cartSlice)
 
   return (
     <div className={styles.root}>
@@ -65,8 +83,8 @@ export const Pizza: React.FC<IPizzaProps> = ({
             className={styles.button}
             appearance="transparent"
             varIcon="plus"
-            counter={pizzaCount}
-            onClick={addCountPizza}
+            counter={items.find((item) => item.id === id)?.ammount}
+            onClick={addPizzaCart}
             colorIcon="#fe5f1e"
           >
             Добавить

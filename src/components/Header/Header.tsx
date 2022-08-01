@@ -1,5 +1,8 @@
 import React from 'react'
 
+import type { RootState } from '../../redux/store'
+import { useSelector } from 'react-redux'
+
 import styles from './Header.module.scss'
 import Logo from '../../assets/images/pizza-logo.svg'
 import { Search, Cart } from '../index'
@@ -8,6 +11,10 @@ import { SearchContext } from '../../App'
 
 export const Header = () => {
   const { searchValue, setSearchValue } = React.useContext(SearchContext)
+  const { totalPrice, items } = useSelector(
+    (state: RootState) => state.cartSlice
+  )
+
   return (
     <div className={styles.header}>
       <div className={styles.container}>
@@ -25,7 +32,11 @@ export const Header = () => {
           setSearchValue={setSearchValue}
           placeholder="Поиск пиццы..."
         />
-        <Cart className={styles.cart} amount="2" price="850" />
+        <Cart
+          className={styles.cart}
+          amount={items.length}
+          price={totalPrice}
+        />
       </div>
     </div>
   )

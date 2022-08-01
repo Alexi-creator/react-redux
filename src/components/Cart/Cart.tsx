@@ -9,8 +9,8 @@ export interface ILink
     AnchorHTMLAttributes<HTMLAnchorElement>,
     HTMLAnchorElement
   > {
-  amount: string
-  price: string
+  amount: number
+  price: number
 }
 
 export const Cart: React.FC<ILink> = ({ className, amount, price }) => {

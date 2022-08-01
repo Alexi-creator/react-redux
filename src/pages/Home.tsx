@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import qs from 'qs'
+import qs from 'qs' // query string
 import { useNavigate } from 'react-router-dom'
 import { Menu, Pizza, PizzaSkeleton, Sort, sortList } from '../components'
 import { IPizzaProps } from '../components/Pizza/Pizza.props'

@@ -18,7 +18,11 @@
     transition: all $duration ease-in-out;
   }
 
-  .icon {
+  &.plus {
+    min-height: 50px;
+  }
+
+  & .icon {
     margin-right: 5px;
   }
 
