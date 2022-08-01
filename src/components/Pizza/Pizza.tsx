@@ -10,7 +10,7 @@ import cn from 'classnames'
 
 import { addItem } from '../../redux/slices/cartSlice'
 
-const typeNames = ['тонкое', 'традиционное']
+export const typeNames = ['тонкое', 'традиционное']
 
 export const Pizza: React.FC<IPizzaProps> = ({
   id,
@@ -20,7 +20,7 @@ export const Pizza: React.FC<IPizzaProps> = ({
   sizes,
   types,
 }) => {
-  const [activeSize, setActiveSize] = React.useState<number>(0)
+  const [activeSize, setActiveSize] = React.useState<number>(sizes[0])
   const [activeType, setActiveType] = React.useState<number>(types[0])
   const dispatch = useDispatch()
 
@@ -32,7 +32,7 @@ export const Pizza: React.FC<IPizzaProps> = ({
         price,
         imageUrl,
         sizes: activeSize,
-        types: typeNames[activeType],
+        types: activeType,
         ammount: 1,
       })
     )
@@ -66,10 +66,10 @@ export const Pizza: React.FC<IPizzaProps> = ({
             {sizes.map((size, index) => (
               <li
                 key={index}
-                onClick={() => setActiveSize(index)}
+                onClick={() => setActiveSize(size)}
                 role="presentation"
                 className={cn(styles.size, {
-                  [styles.active]: activeSize === index,
+                  [styles.active]: activeSize === sizes[index],
                 })}
               >
                 {size}

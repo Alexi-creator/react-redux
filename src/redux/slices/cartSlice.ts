@@ -7,7 +7,7 @@ interface IitemProduct {
   price: number
   imageUrl: string
   sizes: number
-  types: string
+  types: number
   ammount: number
 }
 
@@ -40,23 +40,41 @@ const cartSlice = createSlice({
         return sum + objItem.price * objItem.ammount
       }, 0)
     },
-    // addItem(state, action: PayloadAction<IitemProduct>) {
-    //   state.items.push(action.payload)
-    //   state.totalPrice = state.items.reduce((sum, objItem) => {
-    //     return sum + objItem.price
-    //   }, 0)
-    // },
     removeItem(state, action: PayloadAction<number>) {
       state.items = state.items.filter((item) => {
         return item.id !== action.payload
       })
+
+      state.totalPrice = state.items.reduce((sum, objItem) => {
+        return sum + objItem.price * objItem.ammount
+      }, 0)
     },
     clearItems(state) {
       state.items = []
+      state.totalPrice = 0
+    },
+    addAmmount(state, action: PayloadAction<number>) {
+      const item = state.items.find((item) => item.id === action.payload)
+
+      item ? item.ammount++ : ''
+
+      state.totalPrice = state.items.reduce((sum, objItem) => {
+        return sum + objItem.price * objItem.ammount
+      }, 0)
+    },
+    removeAmmount(state, action: PayloadAction<number>) {
+      const item = state.items.find((item) => item.id === action.payload)
+
+      item && item.ammount > 1 ? item.ammount-- : ''
+
+      state.totalPrice = state.items.reduce((sum, objItem) => {
+        return sum + objItem.price * objItem.ammount
+      }, 0)
     },
   },
 })
 
-export const { addItem, removeItem, clearItems } = cartSlice.actions
+export const { addItem, removeItem, clearItems, addAmmount, removeAmmount } =
+  cartSlice.actions
 
 export default cartSlice.reducer

@@ -1,0 +1,21 @@
+@import '../Button/Button.module.scss';
+
+.root {
+  padding: 30px;
+  text-align: center;
+
+  & .img {
+    margin: 30px auto;
+  }
+
+  h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  p {
+    color: #777;
+    font-size: 20px;
+  }
+}

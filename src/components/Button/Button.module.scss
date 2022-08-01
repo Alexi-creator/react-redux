@@ -20,6 +20,10 @@
 
   &.plus {
     min-height: 50px;
+
+    &.circul {
+      min-height: auto;
+    }
   }
 
   & .icon {
@@ -92,6 +96,7 @@
 
       & svg {
         transition: all 0.05s ease-in-out;
+        fill: $orange;
       }
 
       &:hover {
@@ -121,6 +126,42 @@
 
     &:hover {
       background-color: $orangeHover;
+    }
+  }
+
+  &.buttonBack {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #b6b6b6;
+    color: #b6b6b6;
+    font-weight: 600;
+    transition: all $duration ease-in-out;
+
+    &.fill {
+      background-color: rgba(0, 0, 0, 0.882);
+      color: #fff;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.747);
+        border-color: unset;
+      }
+    }
+
+    & svg {
+      margin-top: 3px;
+      margin-right: 10px;
+      transition: all ease-in-out;
+    }
+
+    &:hover {
+      background-color: #000;
+      color: #fff;
+      border-color: #000;
+
+      & svg {
+        fill: #fff;
+      }
     }
   }
 }

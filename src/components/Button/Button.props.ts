@@ -10,4 +10,5 @@ export interface ButtonProps
   varIcon?: 'plus' | 'minus' | 'close'
   counter?: number
   colorIcon?: string
+  active?: boolean
 }

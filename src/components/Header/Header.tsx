@@ -15,6 +15,10 @@ export const Header = () => {
     (state: RootState) => state.cartSlice
   )
 
+  const totalCount = items.reduce((sum, item) => {
+    return sum + item.ammount
+  }, 0)
+
   return (
     <div className={styles.header}>
       <div className={styles.container}>
@@ -32,11 +36,7 @@ export const Header = () => {
           setSearchValue={setSearchValue}
           placeholder="Поиск пиццы..."
         />
-        <Cart
-          className={styles.cart}
-          amount={items.length}
-          price={totalPrice}
-        />
+        <Cart className={styles.cart} amount={totalCount} price={totalPrice} />
       </div>
     </div>
   )

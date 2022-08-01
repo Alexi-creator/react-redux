@@ -14,6 +14,7 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   counter,
   colorIcon = '#c6c4c4',
+  active,
   ...props
 }: ButtonProps) => {
   return (
@@ -25,6 +26,7 @@ export const Button: React.FC<ButtonProps> = ({
         [styles.circul]: appearance === 'circul',
         [styles.plus]: varIcon === 'plus',
         [styles.close]: varIcon === 'close',
+        [styles.active]: active,
       })}
       {...props}
     >
