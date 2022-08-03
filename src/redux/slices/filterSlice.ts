@@ -5,7 +5,7 @@ import { SortPropertyEnum } from '../../components/Sort/Sort.props'
 
 type FilterCategoryType = number
 
-interface IFilterSort {
+export interface IFilterSort {
   name: string
   sortProperty: SortPropertyEnum
 }

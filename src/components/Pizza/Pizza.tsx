@@ -9,6 +9,7 @@ import { IPizzaProps } from './Pizza.props'
 import cn from 'classnames'
 
 import { addItem } from '../../redux/slices/cartSlice'
+import { Link } from 'react-router-dom'
 
 export const typeNames = ['тонкое', 'традиционное']
 
@@ -42,10 +43,10 @@ export const Pizza: React.FC<IPizzaProps> = ({
 
   return (
     <div className={styles.root}>
-      <a className={styles.link} href={`/pizza/${id}`}>
+      <Link className={styles.link} to={`/pizza/${id}`}>
         <img className={styles.image} src={imageUrl} alt="Pizza" />
         <h4 className={styles.title}>{title}</h4>
-      </a>
+      </Link>
       <div className={styles.row}>
         <div className={styles.selector}>
           <ul>

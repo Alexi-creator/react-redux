@@ -1,18 +1,26 @@
 import React from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import qs from 'qs' // query string
 import { useNavigate } from 'react-router-dom'
-import { Menu, Pizza, PizzaSkeleton, Sort, sortList } from '../components'
+import {
+  ErrorPizzas,
+  Menu,
+  Pizza,
+  PizzaSkeleton,
+  Sort,
+  sortList,
+} from '../components'
 import { IPizzaProps } from '../components/Pizza/Pizza.props'
 import { SearchContext } from '../App'
 
-import type { RootState } from '../redux/store'
+import type { AppDispatch, RootState } from '../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   setCategoryId,
   setSortType,
   setFilters,
 } from '../redux/slices/filterSlice'
+import { fetchPizzas, statusEnum } from '../redux/slices/pizzasSlice'
 
 const categories: string[] = [
   'Все',
@@ -24,37 +32,26 @@ const categories: string[] = [
 ]
 
 export const Home = () => {
-  const [pizzas, setPizzas] = React.useState<IPizzaProps[]>([])
-  const [isLoading, setIsLoading] = React.useState<boolean>(true)
   const isSearch = React.useRef(false)
   const isMounted = React.useRef(false)
 
   const { categoryId, sort: sortType } = useSelector(
     (state: RootState) => state.filterSlice
   )
+  const { items, status } = useSelector((state: RootState) => state.pizzaSlice)
 
   const { searchValue } = React.useContext(SearchContext)
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
 
-  const fetchPizzas = React.useCallback(() => {
-    setIsLoading(true)
-    axios
-      .get(
-        'https://62dd423d79b9f8c30aa554e1.mockapi.io/items?' +
-          `${categoryId > 0 ? `category=${categoryId}` : ''}` +
-          `&sortBy=${sortType.sortProperty.replace('-', '')}&order=${
-            sortType.sortProperty[0] === '-' ? 'asc' : 'desc'
-          }` +
-          `${searchValue ? `&search=${searchValue}` : ''}`
-      )
-      .then((res) => {
-        setPizzas(res.data)
-        setIsLoading((prev) => !prev)
-      })
+  const getPizzas = React.useCallback(() => {
+    // данный диспатч вызывает ассинхронную акшен, который достает данные и сохраняет в store
+    // dispatch(fetchPizzas({ categoryId, sortType, searchValue }))
+    dispatch(fetchPizzas({ categoryId, sortType, searchValue }))
+
     window.scrollTo(0, 0)
-  }, [categoryId, searchValue, sortType.sortProperty])
+  }, [categoryId, sortType, searchValue, dispatch])
 
   // если первый рендер то параметры фильтром не вшиваем в строку, а если не первый(т.е. был клик по параметрам) то вшиваем
   React.useEffect(() => {
@@ -93,11 +90,11 @@ export const Home = () => {
   // на 2-ой и последующий рендер
   React.useEffect(() => {
     if (!isSearch.current) {
-      fetchPizzas()
+      getPizzas()
     }
 
     isSearch.current = false // на 2-ой рендер выше условие уже выполниться if (!isSearch.current)
-  }, [categoryId, sortType, fetchPizzas, searchValue])
+  }, [categoryId, sortType, getPizzas, searchValue])
 
   return (
     <>
@@ -116,11 +113,13 @@ export const Home = () => {
       </div>
       <h2 className="content__title">Пиццы:</h2>
       <div className="content__items">
-        {isLoading
-          ? [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />)
-          : pizzas.map((pizza: IPizzaProps) => (
-              <Pizza key={pizza.id} {...pizza} />
-            ))}
+        {status === statusEnum.loading &&
+          [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />)}
+        {status === statusEnum.success &&
+          items.map((pizza: IPizzaProps) => (
+            <Pizza key={pizza.id} {...pizza} />
+          ))}
+        {status === statusEnum.error && <ErrorPizzas />}
       </div>
     </>
   )
