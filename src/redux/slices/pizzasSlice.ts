@@ -1,23 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-
-// ассинхронный экшен, первый параметр это тип действия со строкой имени sclice(pizza) для удобства
-// будет отображаться в dev tools у каждого thunk должно быть уникальное
-export const fetchPizzas = createAsyncThunk(
-  'pizza/fetchPizzas',
-  async ({ categoryId, sortType, searchValue }: any) => {
-    const { data } = await axios.get(
-      'https://62dd423d79b9f8c30aa554e1.mockapi.io/items?' +
-        `${categoryId > 0 ? `category=${categoryId}` : ''}` +
-        `&sortBy=${sortType.sortProperty.replace('-', '')}&order=${
-          sortType.sortProperty[0] === '-' ? 'asc' : 'desc'
-        }` +
-        `${searchValue ? `&search=${searchValue}` : ''}`
-    )
-    return data
-  }
-)
+import { IFilterSort } from './filterSlice'
 
 interface IPizzas {
   id: number
@@ -28,6 +11,12 @@ interface IPizzas {
   imageUrl: string
   sizes: number[]
   types: number[]
+}
+
+interface IPizzasParams {
+  categoryId: number
+  sortType: IFilterSort
+  searchValue: string
 }
 
 export enum statusEnum {
@@ -45,6 +34,23 @@ const initialState: IPizzaSlice = {
   items: [],
   status: statusEnum.loading,
 }
+
+// ассинхронный экшен, первый параметр это тип действия со строкой имени sclice(pizza) для удобства
+// будет отображаться в dev tools у каждого thunk должно быть уникальное
+export const fetchPizzas = createAsyncThunk<IPizzas[], IPizzasParams>(
+  'pizza/fetchPizzas',
+  async ({ categoryId, sortType, searchValue }) => {
+    const { data } = await axios.get(
+      'https://62dd423d79b9f8c30aa554e1.mockapi.io/items?' +
+        `${categoryId > 0 ? `category=${categoryId}` : ''}` +
+        `&sortBy=${sortType.sortProperty.replace('-', '')}&order=${
+          sortType.sortProperty[0] === '-' ? 'asc' : 'desc'
+        }` +
+        `${searchValue ? `&search=${searchValue}` : ''}`
+    )
+    return data
+  }
+)
 
 const pizzaSlice = createSlice({
   name: 'pizza',

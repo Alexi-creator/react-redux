@@ -10,7 +10,7 @@ export interface IFilterSort {
   sortProperty: SortPropertyEnum
 }
 
-interface IFilterSlice {
+export interface IFilterSlice {
   categoryId: FilterCategoryType
   sort: IFilterSort
 }
