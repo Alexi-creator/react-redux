@@ -11,11 +11,13 @@ export interface IFilterSort {
 }
 
 export interface IFilterSlice {
+  searchValue: string
   categoryId: FilterCategoryType
   sort: IFilterSort
 }
 
 const initialState: IFilterSlice = {
+  searchValue: '',
   categoryId: 0,
   sort: {
     name: 'по популярности (DESC)',
@@ -30,6 +32,9 @@ const filterSlice = createSlice({
     setCategoryId(state, action: PayloadAction<FilterCategoryType>) {
       state.categoryId = action.payload
     },
+    setSearchValue(state, action: PayloadAction<string>) {
+      state.searchValue = action.payload
+    },
     setSortType(state, action: PayloadAction<IFilterSort>) {
       state.sort = action.payload
     },
@@ -40,6 +45,7 @@ const filterSlice = createSlice({
   },
 })
 
-export const { setCategoryId, setSortType, setFilters } = filterSlice.actions
+export const { setCategoryId, setSortType, setFilters, setSearchValue } =
+  filterSlice.actions
 
 export default filterSlice.reducer

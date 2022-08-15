@@ -42,8 +42,9 @@ export const fetchPizzas = createAsyncThunk<IPizzas[], IPizzasParams>(
   // в params прилетают данные которые передаем при вызове fetchPizzas в dispath
   // 2-м параметром принимает thunkAPI который будет объектом с (методом dispath getState итд) т.е. можно сделать еще один диспатч внутри этой ф-и
   // изменить стейт по условию если придет что то не то
-  async (params, thunkAPI) => {
-    console.log(thunkAPI.getState())
+  // async (params, thunkAPI) => {
+  async (params) => {
+    // console.log(thunkAPI.getState())
 
     const { categoryId, sortType, searchValue } = params
     const { data } = await axios.get(

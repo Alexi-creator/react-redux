@@ -10,7 +10,6 @@ import {
   sortList,
 } from '../components'
 import { IPizzaProps } from '../components/Pizza/Pizza.props'
-import { SearchContext } from '../App'
 
 import type { AppDispatch, RootState } from '../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
@@ -34,19 +33,18 @@ export const Home = () => {
   const isSearch = React.useRef(false)
   const isMounted = React.useRef(false)
 
-  const { categoryId, sort: sortType } = useSelector(
-    (state: RootState) => state.filterSlice
-  )
+  const {
+    categoryId,
+    sort: sortType,
+    searchValue,
+  } = useSelector((state: RootState) => state.filterSlice)
   const { items, status } = useSelector((state: RootState) => state.pizzaSlice)
-
-  const { searchValue } = React.useContext(SearchContext)
 
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
 
   const getPizzas = React.useCallback(() => {
     // данный диспатч вызывает ассинхронную акшен, который достает данные и сохраняет в store
-    // dispatch(fetchPizzas({ categoryId, sortType, searchValue }))
     dispatch(fetchPizzas({ categoryId, sortType, searchValue }))
 
     window.scrollTo(0, 0)
