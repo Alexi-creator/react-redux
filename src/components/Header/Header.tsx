@@ -1,6 +1,5 @@
 import React from 'react'
 
-import type { RootState } from '../../redux/store'
 import { useSelector } from 'react-redux'
 
 import styles from './Header.module.scss'
@@ -8,12 +7,11 @@ import Logo from '../../assets/images/pizza-logo.svg'
 import { Search, Cart } from '../index'
 import { Link } from 'react-router-dom'
 import { SearchContext } from '../../App'
+import { selectCart } from '../../redux/slices/cartSlice'
 
 export const Header = () => {
   const { searchValue, setSearchValue } = React.useContext(SearchContext)
-  const { totalPrice, items } = useSelector(
-    (state: RootState) => state.cartSlice
-  )
+  const { totalPrice, items } = useSelector(selectCart)
 
   const totalCount = items.reduce((sum, item) => {
     return sum + item.ammount

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import type { RootState } from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { Button } from '../index'
@@ -8,7 +7,7 @@ import styles from './Pizza.module.scss'
 import { IPizzaProps } from './Pizza.props'
 import cn from 'classnames'
 
-import { addItem } from '../../redux/slices/cartSlice'
+import { addItem, selectCart } from '../../redux/slices/cartSlice'
 import { Link } from 'react-router-dom'
 
 export const typeNames = ['тонкое', 'традиционное']
@@ -39,7 +38,7 @@ export const Pizza: React.FC<IPizzaProps> = ({
     )
   }
 
-  const { items } = useSelector((state: RootState) => state.cartSlice)
+  const { items } = useSelector(selectCart)
 
   return (
     <div className={styles.root}>

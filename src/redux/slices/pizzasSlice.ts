@@ -39,7 +39,13 @@ const initialState: IPizzaSlice = {
 // будет отображаться в dev tools у каждого thunk должно быть уникальное
 export const fetchPizzas = createAsyncThunk<IPizzas[], IPizzasParams>(
   'pizza/fetchPizzas',
-  async ({ categoryId, sortType, searchValue }) => {
+  // в params прилетают данные которые передаем при вызове fetchPizzas в dispath
+  // 2-м параметром принимает thunkAPI который будет объектом с (методом dispath getState итд) т.е. можно сделать еще один диспатч внутри этой ф-и
+  // изменить стейт по условию если придет что то не то
+  async (params, thunkAPI) => {
+    console.log(thunkAPI.getState())
+
+    const { categoryId, sortType, searchValue } = params
     const { data } = await axios.get(
       'https://62dd423d79b9f8c30aa554e1.mockapi.io/items?' +
         `${categoryId > 0 ? `category=${categoryId}` : ''}` +
@@ -55,11 +61,7 @@ export const fetchPizzas = createAsyncThunk<IPizzas[], IPizzasParams>(
 const pizzaSlice = createSlice({
   name: 'pizza',
   initialState,
-  reducers: {
-    setItems(state, action) {
-      state.items = action.payload
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchPizzas.pending, (state) => {
       state.items = []
@@ -78,7 +80,5 @@ const pizzaSlice = createSlice({
     })
   },
 })
-
-export const { setItems } = pizzaSlice.actions
 
 export default pizzaSlice.reducer

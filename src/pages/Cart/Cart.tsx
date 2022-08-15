@@ -1,5 +1,4 @@
 import React from 'react'
-import type { RootState } from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 
 import {
@@ -7,6 +6,7 @@ import {
   removeItem,
   addAmmount,
   removeAmmount,
+  selectCart,
 } from '../../redux/slices/cartSlice'
 
 import cn from 'classnames'
@@ -20,9 +20,7 @@ import { Button, CartEmpty } from '../../components'
 import { typeNames } from '../../components/Pizza/Pizza'
 
 export const Cart = () => {
-  const { items, totalPrice } = useSelector(
-    (state: RootState) => state.cartSlice
-  )
+  const { items, totalPrice } = useSelector(selectCart)
   const dispatch = useDispatch()
   const totalCount = items.reduce((sum, item) => sum + item.ammount, 0)
 
