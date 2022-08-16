@@ -1,5 +1,5 @@
 export interface IPizzaProps {
-  id: number
+  id: string
   title: string
   price: number
   imageUrl: string

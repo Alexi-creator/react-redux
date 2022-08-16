@@ -1,16 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { IFilterSort } from './filterSlice'
+import { IPizzaProps } from '../../components/Pizza/Pizza.props'
 
-interface IPizzas {
-  id: number
-  title: string
-  price: number
+interface IPizzas extends IPizzaProps {
   category: number
-  rating: number
-  imageUrl: string
-  sizes: number[]
-  types: number[]
 }
 
 interface IPizzasParams {

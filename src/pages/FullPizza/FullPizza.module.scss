@@ -1,0 +1,28 @@
+@import '../../components/Button/Button.module.scss';
+
+.skeleton {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.price,
+.rating {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.button {
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 992px) {
+  .title {
+    font-size: 28px;
+  }
+}

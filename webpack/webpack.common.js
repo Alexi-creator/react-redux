@@ -14,22 +14,18 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            // транспилирует tsx jsx файлы блогадаря лоудеру babel
             loader: 'babel-loader',
           },
         ],
       },
       {
-        // для модульных изолированных стилей с хешем
         test: /\.module\.s(a|c)ss$/,
-        // сначала sass/scss преобразуется в css, затем css в js, и потом подключение в html в теге style
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               modules: {
-                // настройка для итогово названия класса (помимо уникального хэша есть название компонента и класса который задали)
                 localIdentName: '[name]__[local]__[sha1:hash:hex:7]',
               },
             },
@@ -39,10 +35,9 @@ module.exports = {
         ],
       },
       {
-        // для глобальных стилей не модульных чтобы имена классов не менялись
         test: /^((?!\.module).)*s(a|c)ss$/,
         use: [
-          MiniCssExtractPlugin.loader, // более лучший варинат чем style-loader т.к. стили будут в link сразу не будет сайт без стилей какое время т.к. style-loader подключает в теги <style> когда обработается js а это долго может быть
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
           'postcss-loader',
@@ -63,6 +58,7 @@ module.exports = {
     filename: '[chunkhash].js',
     clean: true,
     assetModuleFilename: 'assets/images/[name][ext]',
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({

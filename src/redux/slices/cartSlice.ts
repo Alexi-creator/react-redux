@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 
 interface IitemProduct {
-  id: number
+  id: string
   title: string
   price: number
   imageUrl: string
@@ -41,7 +41,7 @@ const cartSlice = createSlice({
         return sum + objItem.price * objItem.ammount
       }, 0)
     },
-    removeItem(state, action: PayloadAction<number>) {
+    removeItem(state, action: PayloadAction<string>) {
       state.items = state.items.filter((item) => {
         return item.id !== action.payload
       })
@@ -54,7 +54,7 @@ const cartSlice = createSlice({
       state.items = []
       state.totalPrice = 0
     },
-    addAmmount(state, action: PayloadAction<number>) {
+    addAmmount(state, action: PayloadAction<string>) {
       const item = state.items.find((item) => item.id === action.payload)
 
       item ? item.ammount++ : ''
@@ -63,7 +63,7 @@ const cartSlice = createSlice({
         return sum + objItem.price * objItem.ammount
       }, 0)
     },
-    removeAmmount(state, action: PayloadAction<number>) {
+    removeAmmount(state, action: PayloadAction<string>) {
       const item = state.items.find((item) => item.id === action.payload)
 
       item && item.ammount > 1 ? item.ammount-- : ''
