@@ -18,7 +18,7 @@ import {
   setSortType,
   setFilters,
 } from '../redux/slices/filterSlice'
-import { fetchPizzas, statusEnum } from '../redux/slices/pizzasSlice'
+import { fetchPizzas, StatusEnum } from '../redux/slices/pizzasSlice'
 
 const categories: string[] = [
   'Все',
@@ -29,9 +29,9 @@ const categories: string[] = [
   'Закрытые',
 ]
 
-export const Home = () => {
-  const isSearch = React.useRef(false)
-  const isMounted = React.useRef(false)
+export const Home: React.FC = () => {
+  const isSearch = React.useRef<boolean>(false)
+  const isMounted = React.useRef<boolean>(false)
 
   const {
     categoryId,
@@ -110,13 +110,13 @@ export const Home = () => {
       </div>
       <h2 className="content__title">Пиццы:</h2>
       <div className="content__items">
-        {status === statusEnum.loading &&
+        {status === StatusEnum.LOADING &&
           [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />)}
-        {status === statusEnum.success &&
+        {status === StatusEnum.SUCCESS &&
           items.map((pizza: IPizzaProps) => (
             <Pizza key={pizza.id} {...pizza} />
           ))}
-        {status === statusEnum.error && <ErrorPizzas />}
+        {status === StatusEnum.ERROR && <ErrorPizzas />}
       </div>
     </>
   )

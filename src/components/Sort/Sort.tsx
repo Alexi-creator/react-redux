@@ -30,7 +30,7 @@ export const Sort: React.FC<ISort> = ({ value, changeSort }) => {
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const _event = event as PopupClick
+      const _event = event as PopupClick // переопределение типа
 
       if (sortRef.current && !_event.path.includes(sortRef.current)) {
         setOpen(false)

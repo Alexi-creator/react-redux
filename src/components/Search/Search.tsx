@@ -10,7 +10,7 @@ export const Search: React.FC<SearchInputProps> = ({
   setSearchValue,
   placeholder,
 }) => {
-  const [value, setValue] = React.useState('')
+  const [value, setValue] = React.useState<string>('')
 
   const searchRef = React.useRef<HTMLInputElement>(null)
 

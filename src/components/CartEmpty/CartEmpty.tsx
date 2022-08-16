@@ -4,7 +4,7 @@ import styles from './CartEmpty.module.scss'
 import cn from 'classnames'
 import emptyCart from '../../assets/images/emptyCart.svg'
 
-export const CartEmpty = () => {
+export const CartEmpty: React.FC = () => {
   return (
     <div className={styles.root}>
       <h2>

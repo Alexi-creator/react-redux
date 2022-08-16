@@ -18,7 +18,7 @@ const initState: IPizzaProps = {
   rating: 0,
 }
 
-export const FullPizza = () => {
+export const FullPizza: React.FC = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [statePizza, setStatePizza] = React.useState<IPizzaProps>(initState)
@@ -55,7 +55,9 @@ export const FullPizza = () => {
     <div className={styles.skeleton}>
       <img src={statePizza.imageUrl} alt="pizza" />
       <div className={styles.title}>{statePizza.title}</div>
-      <div className={styles.price}>Стоимость от {statePizza.price}</div>
+      <div className={styles.price}>
+        Стоимость от {statePizza.price} &#8381;
+      </div>
       <div className={styles.rating}>Рейтинг: {statePizza.rating} / 10</div>
       <Link to={'/'} className={cn(styles.button, styles.buttonBack)}>
         <ArrowLeft />

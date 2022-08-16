@@ -10,7 +10,7 @@ import { selectCart } from '../../redux/slices/cartSlice'
 import { setSearchValue } from '../../redux/slices/filterSlice'
 import { RootState } from '../../redux/store'
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const dispatch = useDispatch()
   const { pathname } = useLocation()
 

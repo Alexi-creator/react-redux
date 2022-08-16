@@ -13,25 +13,25 @@ interface IPizzasParams {
   searchValue: string
 }
 
-export enum statusEnum {
-  loading = 'loading',
-  success = 'success',
-  error = 'error',
+export enum StatusEnum {
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error',
 }
 
 interface IPizzaSlice {
   items: IPizzas[]
-  status: statusEnum
+  status: StatusEnum
 }
 
 const initialState: IPizzaSlice = {
   items: [],
-  status: statusEnum.loading,
+  status: StatusEnum.LOADING,
 }
 
 // ассинхронный экшен, первый параметр это тип действия со строкой имени sclice(pizza) для удобства
 // будет отображаться в dev tools у каждого thunk должно быть уникальное
-export const fetchPizzas = createAsyncThunk<IPizzas[], IPizzasParams>(
+export const fetchPizzas = createAsyncThunk<IPizzas[], IPizzasParams>( // первый тип это то что возвращает ф-ия data, а второй это params
   'pizza/fetchPizzas',
   // в params прилетают данные которые передаем при вызове fetchPizzas в dispath
   // 2-м параметром принимает thunkAPI который будет объектом с (методом dispath getState итд) т.е. можно сделать еще один диспатч внутри этой ф-и
@@ -41,7 +41,7 @@ export const fetchPizzas = createAsyncThunk<IPizzas[], IPizzasParams>(
     // console.log(thunkAPI.getState())
 
     const { categoryId, sortType, searchValue } = params
-    const { data } = await axios.get(
+    const { data } = await axios.get<IPizzas[]>( // не обязательно указывать тип, но указываем что ожидаем возврат от axios данных с определнным типом
       'https://62dd423d79b9f8c30aa554e1.mockapi.io/items?' +
         `${categoryId > 0 ? `category=${categoryId}` : ''}` +
         `&sortBy=${sortType.sortProperty.replace('-', '')}&order=${
@@ -60,18 +60,18 @@ const pizzaSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchPizzas.pending, (state) => {
       state.items = []
-      state.status = statusEnum.loading
+      state.status = StatusEnum.LOADING
     })
     builder.addCase(
       fetchPizzas.fulfilled,
       (state, action: PayloadAction<IPizzas[]>) => {
         state.items = action.payload
-        state.status = statusEnum.success
+        state.status = StatusEnum.SUCCESS
       }
     )
     builder.addCase(fetchPizzas.rejected, (state) => {
       state.items = []
-      state.status = statusEnum.error
+      state.status = StatusEnum.ERROR
     })
   },
 })

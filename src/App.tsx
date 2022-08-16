@@ -10,7 +10,7 @@ import { Cart } from './pages/Cart/Cart'
 import { FullPizza } from './pages/FullPizza/FullPizza'
 import { MainLayout } from './layouts/MainLayout'
 
-export const App = () => {
+export const App: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
