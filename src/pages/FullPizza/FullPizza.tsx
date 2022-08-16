@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React from 'react'
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 import { IPizzaProps } from '../../components/Pizza/Pizza.props'
 import { PizzaFullSkeleton } from './FullPizza.skeleton'
 import styles from './FullPizza.module.scss'
@@ -20,6 +20,7 @@ const initState: IPizzaProps = {
 
 export const FullPizza = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
   const [statePizza, setStatePizza] = React.useState<IPizzaProps>(initState)
   const [isLoading, setIsLoading] = React.useState<boolean>(true)
 
@@ -31,7 +32,9 @@ export const FullPizza = () => {
         )
         setStatePizza(data)
       } catch (e) {
-        console.log(e)
+        console.error(e)
+        alert('Такой пиццы нет...')
+        navigate('/')
       } finally {
         setIsLoading(false)
       }
