@@ -61,6 +61,7 @@ export const Cart = () => {
               </div>
               <div className="cart__item-count">
                 <Button
+                  disabled={product.ammount === 1}
                   appearance="circul"
                   varIcon="minus"
                   colorIcon="#c6c4c4"

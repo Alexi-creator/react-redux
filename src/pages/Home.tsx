@@ -98,14 +98,18 @@ export const Home: React.FC = () => {
       <div className="content__top">
         <Menu
           value={categoryId}
-          changeCategory={(index) => dispatch(setCategoryId(index))}
+          // оптимизируем перерисовку, запоминаем ссылку ф-ии чтобы при перерндере не создавать новую, новая ссылка будет перерендеривать компонент
+          changeCategory={React.useCallback(
+            (index) => dispatch(setCategoryId(index)),
+            []
+          )}
           categories={categories}
         />
         <Sort
           value={sortType}
-          changeSort={(changeSort) => {
+          changeSort={React.useCallback((changeSort) => {
             dispatch(setSortType(changeSort))
-          }}
+          }, [])}
         />
       </div>
       <h2 className="content__title">Пиццы:</h2>

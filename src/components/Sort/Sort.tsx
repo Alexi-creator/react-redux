@@ -19,7 +19,7 @@ export const sortList: ISortItem[] = [
   { name: 'алфавиту (ASC)', sortProperty: SortPropertyEnum.TITLE_ASC },
 ]
 
-export const Sort: React.FC<ISort> = ({ value, changeSort }) => {
+export const Sort: React.FC<ISort> = React.memo(({ value, changeSort }) => {
   const [open, setOpen] = React.useState(false)
   const sortRef = React.useRef<HTMLDivElement>(null)
 
@@ -71,4 +71,6 @@ export const Sort: React.FC<ISort> = ({ value, changeSort }) => {
       )}
     </div>
   )
-}
+})
+
+Sort.displayName = 'Sort' // нужно чтобы eslint не ругался из за обретки React.memo

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -13,6 +13,7 @@ import { RootState } from '../../redux/store'
 export const Header: React.FC = () => {
   const dispatch = useDispatch()
   const { pathname } = useLocation()
+  const isMounted = React.useRef(false)
 
   const { totalPrice, items } = useSelector(selectCart)
   const { searchValue } = useSelector((state: RootState) => state.filterSlice)
@@ -22,6 +23,14 @@ export const Header: React.FC = () => {
   const totalCount = items.reduce((sum, item) => {
     return sum + item.ammount
   }, 0)
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const cartJson = JSON.stringify(items)
+      window.localStorage.setItem('cart', cartJson)
+    }
+    isMounted.current = true
+  }, [items])
 
   return (
     <div className={styles.header}>
