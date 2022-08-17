@@ -19,7 +19,7 @@ import IconTrash from '../../assets/images/IconTrash'
 import { Button, CartEmpty } from '../../components'
 import { typeNames } from '../../components/Pizza/Pizza'
 
-export const Cart: React.FC = () => {
+const Cart: React.FC = () => {
   const { items, totalPrice } = useSelector(selectCart)
   const dispatch = useDispatch()
   const totalCount = items.reduce((sum, item) => sum + item.ammount, 0)
@@ -116,3 +116,5 @@ export const Cart: React.FC = () => {
     </div>
   )
 }
+
+export default Cart
