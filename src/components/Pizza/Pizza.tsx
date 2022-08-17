@@ -7,8 +7,9 @@ import styles from './Pizza.module.scss'
 import { IPizzaProps } from './Pizza.props'
 import cn from 'classnames'
 
-import { addItem, selectCart } from '../../redux/slices/cartSlice'
+import { addItem } from '../../redux/cart/slice'
 import { Link } from 'react-router-dom'
+import { selectCart } from '../../redux/cart/selectors'
 
 export const typeNames = ['тонкое', 'традиционное']
 

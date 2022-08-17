@@ -1,28 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { IFilterSort } from './filterSlice'
-import { IPizzaProps } from '../../components/Pizza/Pizza.props'
-
-interface IPizzas extends IPizzaProps {
-  category: number
-}
-
-interface IPizzasParams {
-  categoryId: number
-  sortType: IFilterSort
-  searchValue: string
-}
-
-export enum StatusEnum {
-  LOADING = 'loading',
-  SUCCESS = 'success',
-  ERROR = 'error',
-}
-
-interface IPizzaSlice {
-  items: IPizzas[]
-  status: StatusEnum
-}
+import { IPizzas, IPizzaSlice, IPizzasParams, StatusEnum } from './types'
 
 const initialState: IPizzaSlice = {
   items: [],

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import filterSlice from './slices/filterSlice'
-import cartSlice from './slices/cartSlice'
-import pizzaSlice from './slices/pizzasSlice'
+import filterSlice from './filter/slice'
+import cartSlice from './cart/slice'
+import pizzaSlice from './pizza/slice'
 
 export const store = configureStore({
   reducer: {

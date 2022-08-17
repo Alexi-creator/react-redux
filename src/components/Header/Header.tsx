@@ -6,9 +6,9 @@ import styles from './Header.module.scss'
 import Logo from '../../assets/images/pizza-logo.svg'
 import { Search, Cart } from '../index'
 import { Link, useLocation } from 'react-router-dom'
-import { selectCart } from '../../redux/slices/cartSlice'
-import { setSearchValue } from '../../redux/slices/filterSlice'
-import { RootState } from '../../redux/store'
+import { setSearchValue } from '../../redux/filter/slice'
+import { selectCart } from '../../redux/cart/selectors'
+import { selectFilter } from '../../redux/filter/selectors'
 
 export const Header: React.FC = () => {
   const dispatch = useDispatch()
@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
   const isMounted = React.useRef(false)
 
   const { totalPrice, items } = useSelector(selectCart)
-  const { searchValue } = useSelector((state: RootState) => state.filterSlice)
+  const { searchValue } = useSelector(selectFilter)
 
   const setNewSearchValue = (value: string) => dispatch(setSearchValue(value))
 

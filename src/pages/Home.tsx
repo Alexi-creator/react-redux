@@ -11,14 +11,13 @@ import {
 } from '../components'
 import { IPizzaProps } from '../components/Pizza/Pizza.props'
 
-import type { AppDispatch, RootState } from '../redux/store'
+import type { AppDispatch } from '../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  setCategoryId,
-  setSortType,
-  setFilters,
-} from '../redux/slices/filterSlice'
-import { fetchPizzas, StatusEnum } from '../redux/slices/pizzasSlice'
+import { setCategoryId, setSortType, setFilters } from '../redux/filter/slice'
+import { fetchPizzas } from '../redux/pizza/slice'
+import { selectFilter } from '../redux/filter/selectors'
+import { StatusEnum } from '../redux/pizza/types'
+import { selectPizza } from '../redux/pizza/selectors'
 
 const categories: string[] = [
   'Все',
@@ -33,12 +32,8 @@ export const Home: React.FC = () => {
   const isSearch = React.useRef<boolean>(false)
   const isMounted = React.useRef<boolean>(false)
 
-  const {
-    categoryId,
-    sort: sortType,
-    searchValue,
-  } = useSelector((state: RootState) => state.filterSlice)
-  const { items, status } = useSelector((state: RootState) => state.pizzaSlice)
+  const { categoryId, sort: sortType, searchValue } = useSelector(selectFilter)
+  const { items, status } = useSelector(selectPizza)
 
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()

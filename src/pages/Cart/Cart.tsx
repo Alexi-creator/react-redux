@@ -6,8 +6,8 @@ import {
   removeItem,
   addAmmount,
   removeAmmount,
-  selectCart,
-} from '../../redux/slices/cartSlice'
+} from '../../redux/cart/slice'
+import { selectCart } from '../../redux/cart/selectors'
 
 import cn from 'classnames'
 
@@ -19,7 +19,7 @@ import IconTrash from '../../assets/images/IconTrash'
 import { Button, CartEmpty } from '../../components'
 import { typeNames } from '../../components/Pizza/Pizza'
 
-export const Cart = () => {
+export const Cart: React.FC = () => {
   const { items, totalPrice } = useSelector(selectCart)
   const dispatch = useDispatch()
   const totalCount = items.reduce((sum, item) => sum + item.ammount, 0)
