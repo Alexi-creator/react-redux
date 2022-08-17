@@ -1,9 +1,7 @@
-@import '../../scss/variables';
-
 .header {
   width: 90%;
   margin: 0 auto;
-  border-bottom: 1px solid $gray-line;
+  border-bottom: 1px solid var(--colorGray);
   padding: 40px 0;
 
   img {

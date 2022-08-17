@@ -1,16 +1,15 @@
 import React from 'react'
 import { Outlet } from 'react-router'
 import { Header } from '../components'
+import styles from './MainLayout.module.scss'
 
 export const MainLayout: React.FC = () => {
   return (
-    <div className="wrapper">
+    <div className={styles.wrapper}>
       <Header />
-      <div className="content">
-        <div className="container">
-          <Outlet />
-        </div>
-      </div>
+      <main className={styles.content}>
+        <Outlet />
+      </main>
     </div>
   )
 }

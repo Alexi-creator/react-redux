@@ -1,5 +1,22 @@
 @import '../../components/Button/Button.module.scss';
 
+.top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 800;
+
+  & svg {
+    margin-right: 10px;
+  }
+}
+
 .clearBtn {
   display: flex;
   align-items: center;
@@ -8,5 +25,151 @@
   & button {
     color: #b6b6b6;
     cursor: pointer;
+    margin-left: 10px;
+  }
+}
+
+.items {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #f6f6f6;
+}
+
+.info {
+  grid-column: 1 / -1;
+
+  & p {
+    color: var(--colorGrayDark);
+  }
+}
+
+.count {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-items: center;
+  justify-content: left;
+  gap: 15px;
+  grid-column: 1 / 2;
+}
+
+.price {
+  grid-column: 1 / 2;
+}
+
+.remove {
+  justify-self: right;
+}
+
+.img {
+  & img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.bottom {
+  margin-top: 40px;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.buttonsWrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .top {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .item {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .info {
+    grid-column: 2 / 3;
+  }
+
+  .count {
+    grid-column: 3 / 4;
+  }
+
+  .price {
+    margin-left: 15px;
+  }
+
+  .remove {
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+    justify-self: right;
+  }
+
+  .details {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    font-size: 22px;
+  }
+
+  .buttonsWrap {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .item {
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+  }
+
+  .img {
+    justify-self: left;
+  }
+
+  .price {
+    margin-left: 0px;
+    grid-row: 1 / 2;
+    grid-column: 4 / 5;
+    font-size: 22px;
+  }
+
+  .count {
+    font-size: 20px;
+  }
+
+  .remove {
+    justify-self: right;
+    grid-column: 5 / 6;
+  }
+
+  .info {
+    justify-self: left;
+
+    & h3 {
+      font-size: 22px;
+    }
+
+    & p {
+      font-size: 18px;
+    }
   }
 }

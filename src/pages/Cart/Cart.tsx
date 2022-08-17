@@ -29,10 +29,10 @@ const Cart: React.FC = () => {
   }
 
   return (
-    <div className="cart">
-      <div className="cart__top">
-        <h2 className="content__title">
-          <IconCart />
+    <>
+      <div className={styles.top}>
+        <h2 className={styles.title}>
+          <IconCart stroke={'#232323'} height="30" width="30" />
           Корзина
         </h2>
         <div className={styles.clearBtn}>
@@ -42,24 +42,20 @@ const Cart: React.FC = () => {
           </button>
         </div>
       </div>
-      {items &&
-        items.map((product) => (
-          <div key={product.id} className="content__items">
-            <div className="cart__item">
-              <div className="cart__item-img">
-                <img
-                  className="pizza-block__image"
-                  src={product.imageUrl}
-                  alt="Pizza"
-                />
+      <div className={styles.items}>
+        {items &&
+          items.map((product) => (
+            <div key={product.id} className={styles.item}>
+              <div className={styles.img}>
+                <img src={product.imageUrl} alt="Pizza" />
               </div>
-              <div className="cart__item-info">
+              <div className={styles.info}>
                 <h3>{product.title}</h3>
                 <p>
                   {typeNames[product.types]}, {product.sizes} см
                 </p>
               </div>
-              <div className="cart__item-count">
+              <div className={styles.count}>
                 <Button
                   disabled={product.ammount === 1}
                   appearance="circul"
@@ -77,10 +73,10 @@ const Cart: React.FC = () => {
                   onClick={() => dispatch(addAmmount(product.id))}
                 />
               </div>
-              <div className="cart__item-price">
+              <div className={styles.price}>
                 <b>{product.ammount * product.price} ₽</b>
               </div>
-              <div className="cart__item-remove">
+              <div className={styles.remove}>
                 <Button
                   onClick={() => dispatch(removeItem(product.id))}
                   appearance="circul"
@@ -89,11 +85,11 @@ const Cart: React.FC = () => {
                 />
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+      </div>
 
-      <div className="cart__bottom">
-        <div className="cart__bottom-details">
+      <div className={styles.bottom}>
+        <div className={styles.details}>
           <span>
             {' '}
             Всего пицц: <b>{totalCount} шт.</b>{' '}
@@ -103,17 +99,15 @@ const Cart: React.FC = () => {
             Сумма заказа: <b>{totalPrice} ₽</b>{' '}
           </span>
         </div>
-        <div className="cart__bottom-buttons">
+        <div className={styles.buttonsWrap}>
           <Link to={'/'} className={cn(styles.button, styles.buttonBack)}>
             <ArrowLeft />
             Вернуться назад
           </Link>
-          <div className="">
-            <Button appearance="fill">Оплатить сейчас</Button>
-          </div>
+          <Button appearance="fill">Оплатить сейчас</Button>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -17,7 +17,7 @@ export const Cart: React.FC<ILink> = ({ className, amount, price }) => {
   return (
     <Link to={'/cart'} className={cn(styles.cart, className)}>
       <span className={styles.price}>{price} ₽</span>
-      <IconCart width={20} />
+      <IconCart width={20} fill="#fff" />
       <span className={styles.amount}>{amount}</span>
     </Link>
   )

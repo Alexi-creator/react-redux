@@ -1,16 +1,16 @@
-@import '../../scss/variables';
-
 .sort {
+  display: inline-flex;
   position: relative;
   flex-shrink: 0;
   margin-left: 15px;
+  width: max-content;
 }
 
 .popup {
   position: absolute;
   right: 0;
   margin-top: 15px;
-  background: #ffffff;
+  background: var(--colorWhite);
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
   border-radius: 10px;
   overflow: hidden;
@@ -29,14 +29,14 @@
 
       &.active {
         font-weight: bold;
-        color: $orange;
+        color: var(--colorOrange);
       }
     }
   }
 }
 
 .label {
-  display: flex;
+  display: inline-flex;
   align-items: center;
 
   svg {
@@ -48,8 +48,8 @@
   }
 
   span {
-    color: $orange;
-    border-bottom: 1px dashed $orange;
+    color: var(--colorOrange);
+    border-bottom: 1px dashed var(--colorOrange);
     cursor: pointer;
   }
 }

@@ -1,0 +1,19 @@
+.wrapper {
+  background-color: var(--colorWhite);
+  margin: 0px auto;
+  border-radius: 10px;
+  max-width: 1400px;
+  padding: 20px;
+}
+
+.content {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    padding: 40px;
+  }
+}

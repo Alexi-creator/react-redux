@@ -33,7 +33,7 @@ export const Header: React.FC = () => {
   }, [items])
 
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <div className={styles.container}>
         <Link to="/">
           <div className={styles.logo}>
@@ -59,6 +59,6 @@ export const Header: React.FC = () => {
           />
         )}
       </div>
-    </div>
+    </header>
   )
 }

@@ -8,16 +8,21 @@ import {
   PizzaSkeleton,
   Sort,
   sortList,
-} from '../components'
-import { IPizzaProps } from '../components/Pizza/Pizza.props'
+} from '../../components'
+import { IPizzaProps } from '../../components/Pizza/Pizza.props'
+import styles from './Home.module.scss'
 
-import type { AppDispatch } from '../redux/store'
+import type { AppDispatch } from '../../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCategoryId, setSortType, setFilters } from '../redux/filter/slice'
-import { fetchPizzas } from '../redux/pizza/slice'
-import { selectFilter } from '../redux/filter/selectors'
-import { StatusEnum } from '../redux/pizza/types'
-import { selectPizza } from '../redux/pizza/selectors'
+import {
+  setCategoryId,
+  setSortType,
+  setFilters,
+} from '../../redux/filter/slice'
+import { fetchPizzas } from '../../redux/pizza/slice'
+import { selectFilter } from '../../redux/filter/selectors'
+import { StatusEnum } from '../../redux/pizza/types'
+import { selectPizza } from '../../redux/pizza/selectors'
 
 const categories: string[] = [
   'Все',
@@ -90,7 +95,7 @@ export const Home: React.FC = () => {
 
   return (
     <>
-      <div className="content__top">
+      <div className={styles.sort}>
         <Menu
           value={categoryId}
           // оптимизируем перерисовку, запоминаем ссылку ф-ии чтобы при перерндере не создавать новую, новая ссылка будет перерендеривать компонент
@@ -107,8 +112,8 @@ export const Home: React.FC = () => {
           }, [])}
         />
       </div>
-      <h2 className="content__title">Пиццы:</h2>
-      <div className="content__items">
+      <h2 className={styles.title}>Пиццы:</h2>
+      <div className={styles.items}>
         {status === StatusEnum.LOADING &&
           [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />)}
         {status === StatusEnum.SUCCESS &&

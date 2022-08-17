@@ -1,20 +1,18 @@
-@import '../../scss/variables';
-
 .cart {
   display: inline-flex;
   align-items: center;
-  background-color: $orange;
+  background-color: var(--colorOrange);
   border-radius: 30px;
   line-height: 23px;
   padding: 12px 25px;
   border: 1px solid transparent;
 
   &:hover {
-    background-color: $orangeHover;
+    background-color: var(--colorOrangeHover);
   }
 
   span {
-    color: #fff;
+    color: var(--colorWhite);
     font-weight: 600;
     line-height: 20px;
   }

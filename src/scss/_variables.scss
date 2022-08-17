@@ -1,9 +1,11 @@
-$black: #232323;
-$background: #ffdf8c;
-$gray-line: #f6f6f6;
-$orange: #fe5f1e;
-$orangeHover: #ee652f;
+:root {
+  --colorWhite: #fff;
+  --colorBlack: #232323;
+  --colorBackgroung: #ffdf8c;
+  --colorGray: #f6f6f6;
+  --colorGrayDark: #8d8d8d;
+  --colorOrange: #fe5f1e;
+  --colorOrangeHover: #ee652f;
 
-$container-width: 90%;
-
-$duration: 0.15s;
+  --transition: all 0.2s ease;
+}
