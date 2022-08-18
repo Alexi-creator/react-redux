@@ -4,7 +4,7 @@
   align-content: space-between;
   width: 260px;
   text-align: center;
-  margin-bottom: 65px;
+  margin-bottom: 20px;
   transition: var(--transition);
 
   &:hover {
@@ -59,9 +59,11 @@
 
 .bottom {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 20px;
+  gap: 10px;
 }
 
 .price {
@@ -74,5 +76,11 @@
 @media screen and (min-width: 768px) {
   .root {
     width: 280px;
+    margin-bottom: 30px;
+  }
+
+  .bottom {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
