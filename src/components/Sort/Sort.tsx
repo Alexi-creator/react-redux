@@ -45,8 +45,10 @@ export const Sort: React.FC<ISort> = React.memo(({ value, changeSort }) => {
   return (
     <div className={styles.sort} ref={sortRef}>
       <div className={styles.label}>
-        <ArrowUp />
-        <b>Сортировка по:</b>
+        <div className={styles.row}>
+          <ArrowUp />
+          <b>Сортировка по:</b>
+        </div>
         <span onClick={() => setOpen((prev) => !prev)} role={'presentation'}>
           {value.name}
         </span>
