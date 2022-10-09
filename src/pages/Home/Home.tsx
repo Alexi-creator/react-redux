@@ -25,12 +25,12 @@ import { StatusEnum } from '../../redux/pizza/types'
 import { selectPizza } from '../../redux/pizza/selectors'
 
 const categories: string[] = [
-  'Все',
-  'Мясные',
-  'Вегетарианские',
-  'Гриль',
-  'Острые',
-  'Закрытые',
+  'All',
+  'Meat',
+  'Vegetarian',
+  'Grill',
+  'Spicy',
+  'Closed',
 ]
 
 export const Home: React.FC = () => {
@@ -112,7 +112,7 @@ export const Home: React.FC = () => {
           }, [])}
         />
       </div>
-      <h2 className={styles.title}>Пиццы:</h2>
+      <h2 className={styles.title}>Pizzas:</h2>
       <div className={styles.items}>
         {status === StatusEnum.LOADING &&
           [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />)}

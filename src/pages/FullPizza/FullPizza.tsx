@@ -33,7 +33,7 @@ export const FullPizza: React.FC = () => {
         setStatePizza(data)
       } catch (e) {
         console.error(e)
-        alert('Такой пиццы нет...')
+        alert('There is no such pizza...')
         navigate('/')
       } finally {
         setIsLoading(false)
@@ -55,13 +55,11 @@ export const FullPizza: React.FC = () => {
     <div className={styles.skeleton}>
       <img src={statePizza.imageUrl} alt="pizza" />
       <div className={styles.title}>{statePizza.title}</div>
-      <div className={styles.price}>
-        Стоимость от {statePizza.price} &#8381;
-      </div>
-      <div className={styles.rating}>Рейтинг: {statePizza.rating} / 10</div>
+      <div className={styles.price}>Price from {statePizza.price}</div>
+      <div className={styles.rating}>Rating: {statePizza.rating} / 10</div>
       <Link to={'/'} className={cn(styles.button, styles.buttonBack)}>
         <ArrowLeft />
-        Вернуться назад
+        Come back
       </Link>
     </div>
   )

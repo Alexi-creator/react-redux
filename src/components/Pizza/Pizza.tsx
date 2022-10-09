@@ -11,7 +11,7 @@ import { addItem } from '../../redux/cart/slice'
 import { Link } from 'react-router-dom'
 import { selectCart } from '../../redux/cart/selectors'
 
-export const typeNames = ['тонкое', 'традиционное']
+export const typeNames = ['thin', 'traditional']
 
 export const Pizza: React.FC<IPizzaProps> = ({
   id,
@@ -79,7 +79,7 @@ export const Pizza: React.FC<IPizzaProps> = ({
           </ul>
         </div>
         <div className={styles.bottom}>
-          <div className={styles.price}>От {price} &#8381;</div>
+          <div className={styles.price}>From {price}</div>
           <Button
             className={styles.button}
             appearance="transparent"
@@ -88,7 +88,7 @@ export const Pizza: React.FC<IPizzaProps> = ({
             onClick={addPizzaCart}
             colorIcon="#fe5f1e"
           >
-            Добавить
+            Add
           </Button>
         </div>
       </div>

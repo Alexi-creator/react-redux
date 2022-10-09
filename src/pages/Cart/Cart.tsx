@@ -33,13 +33,11 @@ const Cart: React.FC = () => {
       <div className={styles.top}>
         <h2 className={styles.title}>
           <IconCart stroke={'#232323'} height="30" width="30" />
-          Корзина
+          Basket
         </h2>
         <div className={styles.clearBtn}>
           <IconTrash fill={'#b6b6b6'} />
-          <button onClick={() => dispatch(clearItems())}>
-            Очистить корзину
-          </button>
+          <button onClick={() => dispatch(clearItems())}>Empty trash</button>
         </div>
       </div>
       <div className={styles.items}>
@@ -52,7 +50,7 @@ const Cart: React.FC = () => {
               <div className={styles.info}>
                 <h3>{product.title}</h3>
                 <p>
-                  {typeNames[product.types]}, {product.sizes} см
+                  {typeNames[product.types]}, {product.sizes} cm
                 </p>
               </div>
               <div className={styles.count}>
@@ -74,7 +72,7 @@ const Cart: React.FC = () => {
                 />
               </div>
               <div className={styles.price}>
-                <b>{product.ammount * product.price} ₽</b>
+                <b>{product.ammount * product.price}</b>
               </div>
               <div className={styles.remove}>
                 <Button
@@ -92,19 +90,19 @@ const Cart: React.FC = () => {
         <div className={styles.details}>
           <span>
             {' '}
-            Всего пицц: <b>{totalCount} шт.</b>{' '}
+            Total pizzas: <b>{totalCount} amount.</b>{' '}
           </span>
           <span>
             {' '}
-            Сумма заказа: <b>{totalPrice} ₽</b>{' '}
+            Order price: <b>{totalPrice}</b>{' '}
           </span>
         </div>
         <div className={styles.buttonsWrap}>
           <Link to={'/'} className={cn(styles.button, styles.buttonBack)}>
             <ArrowLeft />
-            Вернуться назад
+            Come back
           </Link>
-          <Button appearance="fill">Оплатить сейчас</Button>
+          <Button appearance="fill">Pay now</Button>
         </div>
       </div>
     </>

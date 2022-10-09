@@ -8,7 +8,7 @@ const initialState: IFilterSlice = {
   searchValue: '',
   categoryId: 0,
   sort: {
-    name: 'по популярности (DESC)',
+    name: 'popularity (DESC)',
     sortProperty: SortPropertyEnum.RATING_DESC,
   },
 }

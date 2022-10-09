@@ -11,12 +11,12 @@ type PopupClick = MouseEvent & {
 }
 
 export const sortList: ISortItem[] = [
-  { name: 'по пулярности (DESC)', sortProperty: SortPropertyEnum.RATING_DESC },
-  { name: 'по пулярности (ASC)', sortProperty: SortPropertyEnum.RATING_ASC },
-  { name: 'цене (DESC)', sortProperty: SortPropertyEnum.PRICE_DESC },
-  { name: 'цене (ASC)', sortProperty: SortPropertyEnum.PRICE_ASC },
-  { name: 'алфавиту (DESC)', sortProperty: SortPropertyEnum.TITLE_DESC },
-  { name: 'алфавиту (ASC)', sortProperty: SortPropertyEnum.TITLE_ASC },
+  { name: 'popularity (DESC)', sortProperty: SortPropertyEnum.RATING_DESC },
+  { name: 'popularity (ASC)', sortProperty: SortPropertyEnum.RATING_ASC },
+  { name: 'price (DESC)', sortProperty: SortPropertyEnum.PRICE_DESC },
+  { name: 'price (ASC)', sortProperty: SortPropertyEnum.PRICE_ASC },
+  { name: 'alphabet (DESC)', sortProperty: SortPropertyEnum.TITLE_DESC },
+  { name: 'alphabet (ASC)', sortProperty: SortPropertyEnum.TITLE_ASC },
 ]
 
 export const Sort: React.FC<ISort> = React.memo(({ value, changeSort }) => {
@@ -47,7 +47,7 @@ export const Sort: React.FC<ISort> = React.memo(({ value, changeSort }) => {
       <div className={styles.label}>
         <div className={styles.row}>
           <ArrowUp />
-          <b>Сортировка по:</b>
+          <b>Sort by:</b>
         </div>
         <span onClick={() => setOpen((prev) => !prev)} role={'presentation'}>
           {value.name}

@@ -39,8 +39,8 @@ export const Header: React.FC = () => {
           <div className={styles.logo}>
             <img width="38" src={Logo} alt="Pizza logo" />
             <div>
-              <h1>React Pizza</h1>
-              <p>самая вкусная пицца во вселенной</p>
+              <h1>Pizza</h1>
+              <p>the most delicious pizza in the universe</p>
             </div>
           </div>
         </Link>
@@ -48,7 +48,7 @@ export const Header: React.FC = () => {
           <Search
             searchValue={searchValue}
             setSearchValue={setNewSearchValue}
-            placeholder="Поиск пиццы..."
+            placeholder="Pizza search..."
           />
         )}
         {pathname !== '/cart' && (

@@ -8,18 +8,19 @@ export const CartEmpty: React.FC = () => {
   return (
     <div className={styles.root}>
       <h2>
-        Корзина пустая
+        Cart is empty
         <span>😕</span>
       </h2>
       <p>
-        Вероятней всего, вы не заказывали ещё пиццу.
+        You probably haven&apos;t ordered pizza yet.
+        {/* You probably haven@apos;t ordered pizza yet. */}
         <br />
-        Для того, чтобы заказать пиццу, перейди на главную страницу.
+        To order pizza, go to the main page.
       </p>
       <img className={styles.img} src={emptyCart} alt="Empty cart" />
       <Link to={'/'}>
         <span className={cn(styles.button, styles.buttonBack, styles.fill)}>
-          Вернуться назад
+          Come back
         </span>
       </Link>
     </div>
