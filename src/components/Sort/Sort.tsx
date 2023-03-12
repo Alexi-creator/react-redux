@@ -32,7 +32,7 @@ export const Sort: React.FC<ISort> = React.memo(({ value, changeSort }) => {
     const handleClickOutside = (event: MouseEvent) => {
       const _event = event as PopupClick // переопределение типа
 
-      if (sortRef.current && !_event.path.includes(sortRef.current)) {
+      if (sortRef.current && !_event.composedPath().includes(sortRef.current)) {
         setOpen(false)
       }
     }
