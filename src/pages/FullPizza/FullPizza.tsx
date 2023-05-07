@@ -41,7 +41,7 @@ export const FullPizza: React.FC = () => {
     }
 
     fetchPizza()
-  }, [id])
+  }, [id, navigate])
 
   if (isLoading) {
     return (
