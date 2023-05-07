@@ -15,6 +15,7 @@ export const Search: React.FC<SearchInputProps> = ({
   const searchRef = React.useRef<HTMLInputElement>(null)
 
   // при перерендере компонента useCallback сохраняет ссылку на функцию
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateSearchValue = React.useCallback(
     debounce((str: string) => {
       setSearchValue(str)

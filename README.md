@@ -4,6 +4,4 @@
 
 ## yarn build - production mode
 
-## yarn deploy - firebase deploy
-
 ## yarn lint - linter eslint
